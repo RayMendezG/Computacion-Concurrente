@@ -1,0 +1,14 @@
+-------------------------------------------------------------------------------
+Test set: unam.ciencias.computoconcurrente.MatrixUtilsTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.016 s <<< FAILURE! - in unam.ciencias.computoconcurrente.MatrixUtilsTest
+findaverageConcurrent2  Time elapsed: 0.009 s
+findAverageConcurrent  Time elapsed: 0.004 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <9.37> but was: <1.0>
+	at unam.ciencias.computoconcurrente.MatrixUtilsTest.findAverageConcurrent(MatrixUtilsTest.java:34)
+
+findAverage  Time elapsed: 0.001 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <9.37> but was: <1.0>
+	at unam.ciencias.computoconcurrente.MatrixUtilsTest.findAverage(MatrixUtilsTest.java:21)
+
+findAverage2  Time elapsed: 0 s
