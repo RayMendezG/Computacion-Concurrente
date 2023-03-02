@@ -19,16 +19,18 @@ public class PrimeNumberCalculator implements Runnable{
     
 
     public boolean isPrime(int n) throws InterruptedException{
-        longitudSubInter = Math.round(Math.round(Math.sqrt(n)+1)  / this.threads);
+        longitudSubInter = Math.round(Math.round(Math.sqrt(n)+1)  / this.threads); //Dividimos hasta la raiz de n+1
         int inicio = 1;
         result = true;
         numPrimo = n;
 
+        //caso base de 1 y 0
         if(n == 0 || n == 1){
             result = false;
             return result;
-        }    
+        }
 
+        //Creamos los threads y los inicializamos
         for (int i = 0; i < this.threads; i++) {
             Thread t = new Thread(new PrimeNumberCalculator());
             t.setName(String.valueOf(inicio));
@@ -47,6 +49,7 @@ public class PrimeNumberCalculator implements Runnable{
         String nombre_hilo = Thread.currentThread().getName();
         int inicio = Integer.valueOf(nombre_hilo);
 
+        //Revisamos que el hilo no verifique mas alla de la raiz + 1 de numero
         if ((inicio + longitudSubInter) > Math.round(Math.sqrt(numPrimo+1)) ) {
             for (int i = inicio; i < numPrimo; i++) {
                 if (numPrimo % i == 0 && i != 1) {
@@ -55,7 +58,6 @@ public class PrimeNumberCalculator implements Runnable{
                 }
             }
         }else{
-
             for (int i = inicio; i < inicio+longitudSubInter; i++) {
                 if (numPrimo % i == 0 && i != 1) {
                     result = false;
