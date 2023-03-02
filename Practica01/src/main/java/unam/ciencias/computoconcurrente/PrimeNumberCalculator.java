@@ -7,6 +7,8 @@ public class PrimeNumberCalculator implements Runnable{
     public static boolean result;
     public static int longitudSubInter; //Dividimos el intervalo [2,N-1] en this.threads cantidad de sub interbalos, uno por cada hilo
 
+
+
     public PrimeNumberCalculator() {
         this.threads = 1;
     }
@@ -15,13 +17,55 @@ public class PrimeNumberCalculator implements Runnable{
         this.threads = threads > 1 ? threads : 1;
     }
     
+
     public boolean isPrime(int n) throws InterruptedException{
-        return true;
+        longitudSubInter = Math.round(Math.round(Math.sqrt(n)+1)  / this.threads);
+        int inicio = 1;
+        result = true;
+        numPrimo = n;
+
+        if(n == 0 || n == 1){
+            result = false;
+            return result;
+        }    
+
+        for (int i = 0; i < this.threads; i++) {
+            Thread t = new Thread(new PrimeNumberCalculator());
+            t.setName(String.valueOf(inicio));
+            t.start();
+            t.join();
+            inicio = inicio + longitudSubInter;
+        }
+        
+        return result;
 
     }
     
+
     @Override
     public void run(){
+        String nombre_hilo = Thread.currentThread().getName();
+        int inicio = Integer.valueOf(nombre_hilo);
+
+        if ((inicio + longitudSubInter) > Math.round(Math.sqrt(numPrimo+1)) ) {
+            for (int i = inicio; i < numPrimo; i++) {
+                if (numPrimo % i == 0 && i != 1) {
+                    result = false;
+                    return;
+                }
+            }
+        }else{
+
+            for (int i = inicio; i < inicio+longitudSubInter; i++) {
+                if (numPrimo % i == 0 && i != 1) {
+                    result = false;
+                    return;
+                }
+            }
+            
+        }
         
-    } 
+    }
+
+    
 }

@@ -11,24 +11,29 @@ public class App {
 
         long tiempo01 = finSec - iniSec;
 
+
         long iniPar = System.currentTimeMillis();
         PrimeNumberCalculator paralelo = new PrimeNumberCalculator(8);
         paralelo.isPrime(104543);
         long finPar = System.currentTimeMillis();
 
         long tiempo02 = finPar -iniPar;
+
       
         System.out.println("Comparacion ejercicio 01");
         System.out.println("El primo a comparar es el numero: 104543");
         System.out.println("El tiempo en el algoritmo secuencial tarda: " + tiempo01);
         System.out.println("El tiempo en el algoritmo paralelo tarda: " + tiempo02);
 
+
         int[][] matrix = {
             {4, 29, -6, 0},
             {15, 6, 0, 4},
             {25, 41, -10, 4},
             {0, 0, -1, 39},
-        };
+            };
+
+
 
         long iniSec2 = System.currentTimeMillis();
         MatrixUtils secuencial2 = new MatrixUtils();
@@ -37,6 +42,8 @@ public class App {
 
         long tiempo011 = finSec2 - iniSec2;
 
+
+        
         long iniPar2 = System.currentTimeMillis();
         MatrixUtils paralelo2 = new MatrixUtils(4);
         //paralelo2.findMinimum(matrix);
@@ -49,5 +56,19 @@ public class App {
         System.out.println("Se uso una matriz de:  ");
         System.out.println("El tiempo en el algoritmo secuencial tarda: " + tiempo011);
         System.out.println("El tiempo en el algoritmo paralelo tarda: " + tiempo022);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
